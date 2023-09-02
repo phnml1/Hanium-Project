@@ -14,6 +14,7 @@ function MonitoringPage() {
   };
   const [isModal, setIsModal] = useState<boolean>(false);
   const [data, setData] = useState({});
+
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
       <NavBar />
@@ -34,7 +35,7 @@ function MonitoringPage() {
             width="full"
             height="12"
             text="알림 전송"
-            bg="blue-500"
+            bg="rgb(59 130 246)"
             clickHandler={() => {
               setIsModal(true);
             }}

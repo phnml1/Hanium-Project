@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import arrow from '@/assets/keyboard_arrow_down_FILL0_wght400_GRAD0_opsz24.svg';
-function DropDown({selected, setSelected}) {
+function DropDown({ selected, setSelected, items }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleOutsideClick = (e) => {
     if (!e.target.closest('.dropdown')) {
@@ -16,7 +16,7 @@ function DropDown({selected, setSelected}) {
   }, []);
   return (
     <div
-      className="relative flex justify-between mt-5 w-3/4 p-2 min-h-8 max-h-24 rounded-md shadow-md dropdown border-2 border-solid border-slate-100"
+      className="relative flex justify-between mt-5 w-3/4 p-2 min-h-8 max-h-24 rounded-md shadow-md dropdown border-2 border-solid border-slate-200"
       onClick={() => {
         setIsDropdownOpen(!isDropdownOpen);
       }}
@@ -25,22 +25,17 @@ function DropDown({selected, setSelected}) {
 
       {isDropdownOpen && (
         <ul className="absolute top-full left-0 w-full list-none p-0 m-0 z-10 text-center bg-white rounded-md shadow-md max-h-48 overflow-auto">
-          <li
-            className="p-2 cursor-pointer hover:bg-gray-200"
-            onClick={() => {
-              setSelected('진행알림');
-            }}
-          >
-            진행알림
-          </li>
-          <li
-            className="p-2 curor-pointer hover:bg-gray-200"
-            onClick={() => {
-              setSelected('오류알림');
-            }}
-          >
-            오류알림
-          </li>
+          {items.map((a, i) => (
+            <li
+              key={i}
+              className="p-2 cursor-pointer hover:bg-gray-200"
+              onClick={() => {
+                setSelected(a);
+              }}
+            >
+              {a}
+            </li>
+          ))}
         </ul>
       )}
       <img className="absolute top-1/2 -translate-y-1/2 right-3" src={arrow} />
