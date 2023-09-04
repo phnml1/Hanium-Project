@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import DropDown from '@/components/DropDown';
 import Button from '@/components/Button';
 import Close from '@/assets/close.svg';
-function Modal({ width, height, setIsModal, setData }) {
+function AlertModal({ width, height, setIsModal, setData }) {
   const [selected, setSelected] = useState('알림 종류를 선택하세요');
   const [title, setTitle] = useState<String>('');
   const [content, setContent] = useState<String>('');
@@ -48,10 +48,10 @@ function Modal({ width, height, setIsModal, setData }) {
         </div>
         <div className="mt-8 w-full text-center font-semibold text-lg">
           <Button
-            width="1/3"
+            width="20%"
             height="12"
             text="알림 전송"
-            bg="rgb(59 130 246)"
+            bg="rgb(96 165 250)"
             clickHandler={() => {
               handleButtonClicked();
             }}
@@ -61,4 +61,4 @@ function Modal({ width, height, setIsModal, setData }) {
     </div>
   );
 }
-export default Modal;
+export default AlertModal;

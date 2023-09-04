@@ -10,17 +10,17 @@ function MainPage() {
 
   // useState를 사용하여 featureMenus 상태를 선언하고 초기값으로 FeatureMenu[] 타입을 지정
   const [featureMenus, setFeatureMenus] = useState<FeatureMenu[]>([
-    { name: 'Monitoring', kor: '장비를 모니터링 합니다.', bg: 'rgb(186 230 253)' },
-    { name: 'Management', kor: '물류를 관리합니다.', bg: 'rgb(199 210 254)' },
-    { name: 'Document', kor: '기록을 봅니다.', bg: 'rgb(254 215 170)' },
-    { name: 'Status', kor: '물류 현황을 봅니다.', bg: 'rgb(217 249 157)' },
-    { name: 'Notification', kor: '각종 알림', bg: 'rgb(254 205 211)' },
+    { name: 'Monitoring', kor: '장비를 모니터링 합니다.', bg: '#7AABFF' },
+    { name: 'Management', kor: '물류를 관리합니다.', bg: '#719BEB' },
+    { name: 'Document', kor: '기록을 봅니다.', bg: '#6397FF' },
+    { name: 'Status', kor: '물류 현황을 봅니다.', bg: '#6A92EB' },
+    { name: 'Notification', kor: '각종 알림', bg: '#80A6FF' },
   ]);
 
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
       <NavBar />
-      <div className="w-2/3 h-72 flex justify-evenly items-center bg-blue-800 mt-12 rounded-xl">
+      <div className="w-2/3 h-72 flex justify-evenly items-center bg-blue-500 mt-12 rounded-xl">
         <div className="w-1/3 h-52 flex flex-col text-white">
           <div>
             <div className="w-full text-2xl">2023.08.31</div>
@@ -34,7 +34,7 @@ function MainPage() {
       </div>
       <div className="w-2/3 text-lg mt-8">
         <div className="font-semibold">기능</div>
-        <div className="w-full min-h-56 flex gap-6 flex-wrap justify-center items-center mt-8">
+        <div className="w-full min-h-56 flex gap-4 justify-between items-center mt-8">
           {featureMenus.map((a, i) => {
             return (
               <div
@@ -53,7 +53,7 @@ function MainPage() {
           })}
         </div>
       </div>
-      <div className="w-2/3 flex flex-col items-center text-lg mt-8">
+      <div className="w-2/3 flex flex-col items-center rounded-xl text-lg mt-8">
         <div className="w-full h-fit text-left font-semibold">
           선택된 컨베이어
         </div>

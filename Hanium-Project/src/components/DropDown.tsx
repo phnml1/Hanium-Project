@@ -16,7 +16,7 @@ function DropDown({ selected, setSelected, items }) {
   }, []);
   return (
     <div
-      className="relative flex justify-between mt-5 w-3/4 p-2 min-h-8 max-h-24 rounded-md shadow-md dropdown border-2 border-solid border-slate-200"
+      className="relative bg-white flex justify-between mt-5 w-3/4 py-2 min-h-8 max-h-24 rounded-md shadow-md dropdown border-2 border-solid border-slate-200"
       onClick={() => {
         setIsDropdownOpen(!isDropdownOpen);
       }}

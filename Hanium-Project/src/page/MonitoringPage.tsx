@@ -1,7 +1,7 @@
 import NavBar from '@/components/NavBar';
 import '@/css/Monitoring.css';
 import Button from '@/components/Button';
-import Modal from '@/components/Modal';
+import AlertModal from '@/components/Modal/AlertModal';
 import { useState } from 'react';
 function MonitoringPage() {
   const currentDate: Date = new Date();
@@ -43,7 +43,7 @@ function MonitoringPage() {
         </div>
       </div>
       {isModal && (
-        <Modal
+        <AlertModal
           width="3/4"
           height="3/4"
           setIsModal={setIsModal}
