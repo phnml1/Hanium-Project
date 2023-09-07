@@ -57,6 +57,7 @@ function NavBar() {
           }}
         />
         <FontAwesomeIcon
+          onClick={()=>{navigate('/notification')}}
           className="text-3xl text-blue-400 cursor-pointer"
           icon={faBell}
         />

@@ -2,11 +2,16 @@ import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
 import { ReactComponent as LocationImg } from '@/assets/locationImg.svg';
 import { useState } from 'react';
+import ProgressBar from '@ramonak/react-progress-bar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function LogisticsPage() {
+  const [currentLog, setCurrentLog] = useState(200);
+  const [goalLog, setGoalLog] = useState(1000);
+
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
       <NavBar />
-      <div className="w-3/4 flex flex-col items-center">
+      <div className="w-3/4 mt-8 flex flex-col items-center">
         <div className="w-full text-center font-extrabold text-blue-800 text-2xl mt-4">
           물류 관리
         </div>
@@ -23,8 +28,30 @@ function LogisticsPage() {
         <div className="w-24 h-12 mt-4 bg-orange-300 rounded-md flex justify-center items-center">
           작동중
         </div>
-        <div className='w-1/2 mt-12 font-semibold text-center text-gray-400'>목표까지 9600개</div>
-        <div className='w-1/2 mt-4 font-semibold text-xl text-blue-800 text-center'>물류 현황</div>
+
+        <div className="w-1/2 mt-8 font-semibold text-xl text-blue-800 text-center">
+          물류 현황
+        </div>
+        <div className="w-1/2 mt-4 relative font-semibold text-center text-gray-400">
+          현재 물류: {currentLog}개
+          <div className="w-full text-center mt-2">
+            목표까지 {goalLog - currentLog}개
+          </div>
+          
+        </div>
+        <div className="relative w-1/2 mt-8 ">
+          <ProgressBar
+            style={{ overFlow: 'auto' }}
+            completed={`${currentLog}`}
+            customLabel={`${currentLog}개`}
+            maxCompleted={`${goalLog}`}
+          />
+          <span className="absolute -right-4 text-gray-600 -top-6">{goalLog}개</span>
+        </div>
+        <div className='mt-8'>
+        <Button width="100px" bg="rgb(59 130 246)" height="12"
+            text="수정"/>
+            </div>
       </div>
     </div>
   );

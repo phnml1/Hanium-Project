@@ -36,6 +36,7 @@ function MonitoringPage() {
             height="12"
             text="알림 전송"
             bg="rgb(59 130 246)"
+            color = "black"
             clickHandler={() => {
               setIsModal(true);
             }}
