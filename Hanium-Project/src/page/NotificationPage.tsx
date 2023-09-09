@@ -2,13 +2,20 @@ import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
 import { useState } from 'react';
 import DropDown from '@/components/DropDown';
+import Line from '@/components/Line';
 
-function NotificationPage() {
-  const [currentLog, setCurrentLog] = useState(200);
-  const [goalLog, setGoalLog] = useState(1000);
-  const [selected, setSelected] = useState('전체 알림');
-  const items = ['전체 알림', '진행 알림', '오류 알림'];
-  const notifydummy = [
+interface Notification {
+  kinds: string;
+  title: string;
+  writer: string;
+  content: string;
+}
+const NotificationPage: React.FC = () => {
+  const [currentLog, setCurrentLog] = useState<number>(200);
+  const [goalLog, setGoalLog] = useState<number>(1000);
+  const [selected, setSelected] = useState<string>('전체 알림');
+  const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
+  const notifydummy: Notification[] = [
     {
       kinds: '오류 알림',
       title: '카메라 상태 이상',
@@ -48,7 +55,6 @@ function NotificationPage() {
     },
     // 더 많은 객체 추가 가능
   ];
-
   return (
     <div className="w-full bg-slate-100 h-fit flex flex-col items-center">
       <NavBar />
@@ -63,18 +69,21 @@ function NotificationPage() {
             items={items}
           />
         </div>
-        <div className="mt-8 mb-8 w-full flex flex-col items-center gap-6">
+        <div className="w-3/4 flex justify-end mt-4">
+          <div className="w-fit text-red-400 cursor-pointer">delete</div>
+        </div>
+        <Line width="3/4" mt="4" />
+
+        <div className="mt-16 mb-8 w-full flex flex-col items-center gap-6">
           {notifydummy.map((a, i) => (
             <div className="relative w-3/4 bg-white h-fit rounded-xl">
-              <div className="absolute right-4 top-12 text-gray-300">
-                {a.writer}
-              </div>
               <div className="w-full h-10 text-white flex items-center justify-center bg-sky-300 rounded-t-xl font-semibold">
                 {a.kinds}
               </div>
               <div className="mx-8 mt-2 font-bold text-blue-800 relative">
                 {a.title}
               </div>
+              <div className="mx-8 mt-1 text-sm text-gray-300">{a.writer}</div>
 
               <div className="max-w-3/4 h-fit mx-8 mt-3 mb-8 flex flex-wrap justify-start items-center break-all">
                 {a.content}
@@ -88,5 +97,5 @@ function NotificationPage() {
       </div>
     </div>
   );
-}
+};
 export default NotificationPage;

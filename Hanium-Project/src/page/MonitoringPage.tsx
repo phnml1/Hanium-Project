@@ -2,8 +2,9 @@ import NavBar from '@/components/NavBar';
 import '@/css/Monitoring.css';
 import Button from '@/components/Button';
 import AlertModal from '@/components/Modal/AlertModal';
-import { useState } from 'react';
-function MonitoringPage() {
+import React,{ useState } from 'react';
+
+const MonitoringPage: React.FC = () => {
   const currentDate: Date = new Date();
   const currentTime = {
     year: currentDate.getFullYear(),
@@ -18,7 +19,7 @@ function MonitoringPage() {
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
       <NavBar />
-      <div className="w-3/4 text-2xl mt-3 font-semibold">D-37번 컨베이어</div>
+      <div className="w-3/4 text-2xl mt-4 font-semibold">D-37번 컨베이어</div>
       <div className="w-3/4 flex justify-between MonitoringContent mt-6">
         <div className="w-3/4 h-full bg-white rounded-l-xl"></div>
         <div className="w-1/4 h-full flex flex-col justify-between text-center font-semibold text-lg bg-gray-300 rounded-r-xl">

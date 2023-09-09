@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
 import arrow from '@/assets/keyboard_arrow_down_FILL0_wght400_GRAD0_opsz24.svg';
-function DropDown({ selected, setSelected, items }) {
+
+interface DropDownProps {
+  selected: string; // 선택된 항목의 타입에 따라 수정하세요
+  setSelected: (value: string) => void; // 선택된 항목을 업데이트하는 함수의 타입에 따라 수정하세요
+  items: string[]; // 드롭다운 아이템의 타입에 따라 수정하세요
+}
+function DropDown({ selected, setSelected, items }: DropDownProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const handleOutsideClick = (e) => {
+  const handleOutsideClick = (e: React.ChangeEvent<HTMLElement>) => {
     if (!e.target.closest('.dropdown')) {
       setIsDropdownOpen(false); // 입력 창 밖을 클릭하면 dropdown 메뉴를 숨김
     }

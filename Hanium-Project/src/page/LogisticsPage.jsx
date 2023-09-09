@@ -1,12 +1,13 @@
 import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
 import { ReactComponent as LocationImg } from '@/assets/locationImg.svg';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-function LogisticsPage() {
-  const [currentLog, setCurrentLog] = useState(200);
-  const [goalLog, setGoalLog] = useState(1000);
+
+const LogisticsPage: React.FC = ()=> {
+  const [currentLog, setCurrentLog] = useState<Number>(200);
+  const [goalLog, setGoalLog] = useState<Number>(1000);
 
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
