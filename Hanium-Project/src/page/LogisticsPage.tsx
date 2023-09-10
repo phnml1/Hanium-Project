@@ -6,13 +6,13 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const LogisticsPage: React.FC = ()=> {
-  const [currentLog, setCurrentLog] = useState<Number>(200);
-  const [goalLog, setGoalLog] = useState<Number>(1000);
+  const [currentLog, setCurrentLog] = useState<number>(200);
+  const [goalLog, setGoalLog] = useState<number>(1000);
 
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
       <NavBar />
-      <div className="w-3/4 mt-8 flex flex-col items-center">
+      <div className="w-3/4 mt-32 flex flex-col items-center">
         <div className="w-full text-center font-extrabold text-blue-800 text-2xl mt-4">
           물류 관리
         </div>

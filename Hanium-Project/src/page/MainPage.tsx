@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NavBar from '@/components/NavBar';
-
+import Line from '@/components/Line';
 function MainPage() {
   type FeatureMenu = {
     name: string;
@@ -20,7 +20,7 @@ function MainPage() {
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
       <NavBar />
-      <div className="w-2/3 h-72 flex justify-evenly items-center bg-blue-500 mt-12 rounded-xl">
+      <div className="w-2/3 h-72 flex justify-evenly items-center bg-blue-500 mt-36 rounded-xl">
         <div className="w-1/3 h-52 flex flex-col text-white">
           <div>
             <div className="w-full text-2xl">2023.08.31</div>

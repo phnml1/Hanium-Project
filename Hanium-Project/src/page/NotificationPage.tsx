@@ -15,6 +15,10 @@ const NotificationPage: React.FC = () => {
   const [goalLog, setGoalLog] = useState<number>(1000);
   const [selected, setSelected] = useState<string>('전체 알림');
   const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
+  const [scroll, setScroll] = useState(false);
+  const stickyStyle: string = `w-3/4 mt-8 flex flex-col ease-in-out duration-150 items-center sticky top-${
+    scroll ? '0' : '24'
+  } z-20 bg-slate-100`;
   const notifydummy: Notification[] = [
     {
       kinds: '오류 알림',
@@ -57,23 +61,24 @@ const NotificationPage: React.FC = () => {
   ];
   return (
     <div className="w-full bg-slate-100 h-fit flex flex-col items-center">
-      <NavBar />
-      <div className="w-3/4 mt-8 flex flex-col items-center">
-        <div className="w-full text-center font-extrabold text-blue-800 text-2xl mt-4">
-          보고된 알림
+      <NavBar setScroll={setScroll} />
+      <div className="w-full mt-24 bg-slate-100 h-fit flex flex-col items-center">
+        <div className={stickyStyle}>
+          <div className="w-full text-center font-extrabold text-blue-800 text-2xl mt-4">
+            보고된 알림
+          </div>
+          <div className="w-1/2 flex justify-center mt-2 ">
+            <DropDown
+              selected={selected}
+              setSelected={setSelected}
+              items={items}
+            />
+          </div>
+          <div className="w-full flex justify-end mt-4">
+            <div className="w-fit text-red-400 cursor-pointer">delete</div>
+          </div>
+          <Line width="full" mt="4" />
         </div>
-        <div className="w-1/2 flex justify-center mt-2 ">
-          <DropDown
-            selected={selected}
-            setSelected={setSelected}
-            items={items}
-          />
-        </div>
-        <div className="w-3/4 flex justify-end mt-4">
-          <div className="w-fit text-red-400 cursor-pointer">delete</div>
-        </div>
-        <Line width="3/4" mt="4" />
-
         <div className="mt-16 mb-8 w-full flex flex-col items-center gap-6">
           {notifydummy.map((a, i) => (
             <div className="relative w-3/4 bg-white h-fit rounded-xl">
