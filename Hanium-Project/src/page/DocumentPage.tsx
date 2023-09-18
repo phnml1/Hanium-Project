@@ -48,16 +48,16 @@ function DocumentPage() {
   const [scroll, setScroll] = useState(false);
   const [selected, setSelected] = useState<String>('D-23번 컨베이어');
   const [modal, setIsModal] = useState(false);
-  const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky top-${
-    scroll ? '0' : '24'
+  const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky ${
+    scroll ? '-top-24' : 'top-0'
   } z-20 bg-slate-100`;
 
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
       <NavBar setScroll={setScroll} />
-      <div className="w-3/4 mt-34 flex flex-col items-center">
+      <div className="w-3/4 flex flex-col items-center">
         <div className={stickyStyle}>
-          <div className="w-full flex flex-col items-center h-fit mt-2 text-center text-lg font-semibold">
+          <div className="w-full mt-24 flex flex-col items-center h-fit mt-2 text-center text-lg font-semibold">
             <DropDown
               selected={selected}
               setSelected={setSelected}
