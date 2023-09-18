@@ -12,7 +12,7 @@ function DocumentPage() {
     writer:string;
   };
 
-  const items: String[] = [
+  const items: string[] = [
     'D-23번 컨베이어',
     'D-24번 컨베이어',
     'D-25번 컨베이어',
@@ -44,9 +44,57 @@ function DocumentPage() {
       time: '8/31 14:00',
       writer: 'admin',
     },
+    {
+      title: '9/3 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '6hours ago',
+      writer: 'admin',
+    },
+    {
+      title: '9/2 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '9/2 16:00',
+      writer: 'admin',
+    },
+    {
+      title: '9/1 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '9/1 13:00',
+      writer: 'admin',
+    },
+    {
+      title: '8/31 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '8/31 14:00',
+      writer: 'admin',
+    },
+    {
+      title: '9/3 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '6hours ago',
+      writer: 'admin',
+    },
+    {
+      title: '9/2 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '9/2 16:00',
+      writer: 'admin',
+    },
+    {
+      title: '9/1 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '9/1 13:00',
+      writer: 'admin',
+    },
+    {
+      title: '8/31 검사 결과 입니다',
+      content: '장비 이상없음',
+      time: '8/31 14:00',
+      writer: 'admin',
+    },
   ]);
   const [scroll, setScroll] = useState(false);
-  const [selected, setSelected] = useState<String>('D-23번 컨베이어');
+  const [selected, setSelected] = useState<string>('D-23번 컨베이어');
   const [modal, setIsModal] = useState(false);
   const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky ${
     scroll ? '-top-24' : 'top-0'

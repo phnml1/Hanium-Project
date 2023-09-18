@@ -1,6 +1,6 @@
 import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropDown from '@/components/DropDown';
 import Line from '@/components/Line';
 
@@ -15,10 +15,9 @@ const NotificationPage: React.FC = () => {
   const [goalLog, setGoalLog] = useState<number>(1000);
   const [selected, setSelected] = useState<string>('전체 알림');
   const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
-  const [scroll, setScroll] = useState(false);
-  const stickyStyle: string = `w-3/4 mt-8 flex flex-col ease-in-out duration-150 items-center sticky top-${
-    scroll ? '0' : '24'
-  } z-20 bg-slate-100`;
+
+  const [scroll, setScroll] = useState<boolean>(false);
+  const stickyStyle: string = `${scroll ? 'sticky top-0' : 'sticky top-24'}`;
   const notifydummy: Notification[] = [
     {
       kinds: '오류 알림',
@@ -62,8 +61,10 @@ const NotificationPage: React.FC = () => {
   return (
     <div className="w-full bg-slate-100 h-fit flex flex-col items-center">
       <NavBar setScroll={setScroll} />
-      <div className="w-full mt-24 bg-slate-100 h-fit flex flex-col items-center">
-        <div className={stickyStyle}>
+      <div className="w-full mt-24 bg-slate-100 h-fit flex flex-col items-center relative">
+        <div
+          className={`w-3/4 mt-8 flex flex-col ease-in-out duration-150 items-center ${stickyStyle} z-20 bg-slate-100`}
+        >
           <div className="w-full text-center font-extrabold text-blue-800 text-2xl mt-4">
             보고된 알림
           </div>
