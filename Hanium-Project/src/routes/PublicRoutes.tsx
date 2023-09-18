@@ -1,20 +1,20 @@
 import { lazy } from 'react';
 import { IRoute } from '@/types/route';
 const MainPage = lazy(
-  () => import(/* webpackChunkName: "home" */ '@/page/MainPage'),
+  () => import('@/page/MainPage'),
 );
 const MonitoringPage = lazy(
-  () => import(/* webpackChunkName: "productList" */ '@/page/MonitoringPage'),
+  () => import('@/page/MonitoringPage'),
 );
 const NotificationPage = lazy(
   () =>
-    import(/* webpackChunkName: "productDetail" */ '@/page/NotificationPage'),
+    import( '@/page/NotificationPage'),
 );
 const DocumentPage = lazy(
-  () => import(/* webpackChunkName: "cart" */ '@/page/DocumentPage'),
+  () => import('@/page/DocumentPage'),
 );
 const LogisticsPage = lazy(
-  () => import(/* webpackChunkName: "login" */ '@/page/LogisticsPage'),
+  () => import('@/page/LogisticsPage'),
 );
 
 const PublicRoutes: IRoute[] = [

@@ -3,10 +3,8 @@ import DropDown from '@/components/DropDown';
 import Button from '@/components/Button';
 import Close from '@/assets/close.svg';
 function LoginModal({ Modal, setIsModal }) {
-  const [selected, setSelected] = useState('알림 종류를 선택하세요');
-  const [id, setId] = useState<String>('');
-  const [password, setPassword] = useState<String>('');
-  const items:String[] = ['진행알림','오류알림']
+  const [id, setId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const handleButtonClicked = () => {
       setIsModal(false);
     }
@@ -27,7 +25,7 @@ function LoginModal({ Modal, setIsModal }) {
           <div className='w-3/4 text-xs mt-2 font-normal text-gray-400 text-center'>물류창고내 장비 상태 및 수집획득을 위한 인공지능 기반
           <br/>IOT 모니터링 제어 솔루션</div>
           <div className='w-full h-fit flex flex-col items-center justify-center'>
-          <div className="w-3/4 text-left mt-8 font-semibold">E-mail</div>
+          <div className="w-3/4 text-left mt-12 font-semibold">E-mail</div>
           <input
             className="w-3/4 h-12 mt-2 rounded-md shadow-md dropdown border-2 border-solid border-slate-100 text-center"
             placeholder="이메일을 입력하세요"

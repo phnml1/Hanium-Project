@@ -2,15 +2,20 @@ import { useState, useEffect } from 'react';
 import DropDown from '@/components/DropDown';
 import Button from '@/components/Button';
 import Close from '@/assets/close.svg';
-function SignUpModal({ width, height, setIsModal, setData }) {
-  const [selected, setSelected] = useState('알림 종류를 선택하세요');
-  const [title, setTitle] = useState<String>('');
-  const [content, setContent] = useState<String>('');
-  const items: String[] = ['진행알림', '오류알림'];
+interface SignUpModalProps {
+  setIsModal: (isModal: boolean) => void;
+  setData: (data: { title: string; content: string }) => void;
+}
+
+function SignUpModal({ setIsModal, setData }: SignUpModalProps) {
+  const [selected, setSelected] = useState<string>('알림 종류를 선택하세요');
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const items: string[] = ['진행알림', '오류알림'];
   const handleButtonClicked = () => {
     const confirm: boolean = window.confirm('알림을 전송하시겠습니까?');
     if (confirm) {
-      setData({ title: { title }, content: { content } });
+      setData({ title, content });
       setIsModal(false);
     }
   };

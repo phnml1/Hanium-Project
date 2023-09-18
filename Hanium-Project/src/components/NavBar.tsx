@@ -5,12 +5,17 @@ import LoginModal from './Modal/LoginModal';
 import SignUpModal from './Modal/SignUpModal';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-function NavBar({ setScroll }) {
+interface NavBarProps {
+  setScroll: (scroll: boolean) => void;
+}
+
+function NavBar({ setScroll }: NavBarProps) {
   const [loginClicked, setLoginClicked] = useState<boolean>(false);
   const [modal, setIsModal] = useState<number>(0);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
   const [position, setPosition] = useState<number>(window.pageYOffset);
+
 
   useEffect(() => {
     const handleScroll = () => {
