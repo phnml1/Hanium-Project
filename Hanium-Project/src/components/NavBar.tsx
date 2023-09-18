@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 import LoginModal from './Modal/LoginModal';
-import SignUpModal from './Modal/SignUpModal';
+import SignUpModal from '../login/components/SignUpModal';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 interface NavBarProps {

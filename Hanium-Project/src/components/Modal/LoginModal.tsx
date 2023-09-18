@@ -7,7 +7,7 @@ function LoginModal({ Modal, setIsModal }) {
   const [password, setPassword] = useState<string>('');
   const handleButtonClicked = () => {
       setIsModal(false);
-    }
+  }
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-700 bg-opacity-50 z-50">
       <div
