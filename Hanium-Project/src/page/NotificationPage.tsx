@@ -1,8 +1,9 @@
 import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropDown from '@/components/DropDown';
 import Line from '@/components/Line';
+import { axiosInstance, getJWTHeader } from '@/axiosinstance';
 
 interface Notification {
   kinds: string;
@@ -19,6 +20,19 @@ const NotificationPage: React.FC = () => {
   const stickyStyle: string = `w-3/4 mt-8 flex flex-col ease-in-out duration-150 items-center sticky top-${
     scroll ? '0' : '24'
   } z-20 bg-slate-100`;
+  useEffect(() => {
+    axiosInstance.post(
+      '/notice',
+      {
+        getUser: '박수현',
+        sendUser: '안소현',
+        noticeType: 'record',
+        content: '에러 발생',
+        noticeURL: 'http://~~',
+      },
+      getJWTHeader(),
+    );
+  });
   const notifydummy: Notification[] = [
     {
       kinds: '오류 알림',

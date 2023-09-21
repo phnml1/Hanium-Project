@@ -1,9 +1,13 @@
-export const passWordCheck = (data: SignUpData) => {
-    if (data.passwordCheck === '') {
-      setPasswordEqual('');
-    } else if (data.password !== data.passwordCheck) {
-      setPasswordEqual('n');
-    } else {
-      setPasswordEqual('y');
+export function isLogined() {
+    if(localStorage.getItem('user')){
+        return true;
+    } else{
+        return false;
     }
-  };
+}
+export function Logout(){
+    if(confirm('로그아웃 하시겠습니까?')){
+    localStorage.removeItem('user');
+    }
+
+}

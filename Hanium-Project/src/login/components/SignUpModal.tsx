@@ -6,7 +6,6 @@ import { SignUpData, SignUpModalProps } from '../types';
 import { useSignUp } from '../hooks/useSignUp';
 
 function SignUpModal({ setIsModal }: SignUpModalProps) {
-  const [selected, setSelected] = useState<string>('알림 종류를 선택하세요');
   const [data, setData] = useState<SignUpData>({
     email: '',
     password: '',
@@ -15,38 +14,50 @@ function SignUpModal({ setIsModal }: SignUpModalProps) {
   });
   const [passwordEqual, setPasswordEqual] = useState<string>('');
   const [passwordAccept, setAccept] = useState(false);
+  
   const passWordCheck = (data: SignUpData) => {
     if (data.passwordCheck === '') {
       setPasswordEqual('');
     } else if (data.password !== data.passwordCheck) {
       setPasswordEqual('n');
-    } else {
+    } else if (data.password.length <4){
+      setPasswordEqual('t')
+    }else {
       setPasswordEqual('y');
     }
   };
   const signup = useSignUp();
+
+
   useEffect(() => {
     if (passwordAccept) {
       passWordCheck(data);
     }
   }, [data.password, data.passwordCheck]);
+
+
   const handleButtonClicked = async () => {
     const confirm: boolean = window.confirm('회원가입 하시겠습니까?');
     if (confirm && passwordEqual === 'y') {
       try {
         const issuccess = await signup(data);
-        if(issuccess==='회원가입 성공'){
+        if (issuccess === '회원가입 성공') {
           alert('회원가입을 성공하였습니다!');
           setIsModal(1);
-        }
-        else{
+        } else {
           alert(issuccess);
         }
       } catch (error) {
         console.error(error);
       } finally {
-        console.log("done");
+        console.log('done');
       }
+    }
+    else if(confirm && passwordEqual === 'n'){
+      alert('비밀번호가 다릅니다');
+    }
+    else if(confirm && passwordEqual === 't'){
+      alert('비밀번호는 4자이상이어야합니다.');
     }
   };
   return (
@@ -97,6 +108,17 @@ function SignUpModal({ setIsModal }: SignUpModalProps) {
                 }
               }}
             />
+            {passwordAccept  && (
+              <div className="w-3/4 text-center mt-2 text-green-600 text-xs">
+                사용가능한 비밀번호입니다.
+              </div>
+            )}
+            {(!passwordAccept && data.password.length >=1) && (
+              <div className="w-3/4 text-center mt-2 text-red-600 text-xs">
+                비밀번호는 4자이상 이어야합니다
+              </div>
+            )}
+
             <div className="w-3/4 text-left mt-4 font-semibold">
               비밀번호 확인
             </div>

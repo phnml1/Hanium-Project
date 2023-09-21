@@ -10,4 +10,7 @@ export interface SignUpData {
     passwordCheck: string;
     userName: string;
   }
-  
+export interface LoginData{
+  email: string,
+  password: string,
+}

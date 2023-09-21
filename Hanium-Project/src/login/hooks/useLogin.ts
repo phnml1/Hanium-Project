@@ -1,21 +1,21 @@
 import { useMutation } from 'react-query';
 import { axiosInstance } from '@/axiosinstance';
-import { SignUpData } from '../types';
+import { LoginData } from '../types';
 // for when we need functions for useMutation
-async function SignUp(data: SignUpData): Promise<void> {
-  const response = await axiosInstance.post(`/jwt/join`, data);
+async function Login(data: LoginData): Promise<void> {
+  const response = await axiosInstance.post(`/jwt/login`, data);
   return response.data;
 }
 
 // TODO: update type for React Query mutate function
 
-export function useSignUp() {
+export function useLogin() {
   //   const toast = useCustomToast();
 
   const { mutateAsync } = useMutation(
-    (data: SignUpData) => {
+    (data: LoginData) => {
       console.log(data);
-      const response = SignUp(data);
+      const response = Login(data);
       console.log(response);
       return response;
     },
