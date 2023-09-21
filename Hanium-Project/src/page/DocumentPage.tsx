@@ -2,14 +2,15 @@ import DropDown from '@/components/DropDown';
 import DocumentAddModal from '@/components/Modal/DocumentAddModal';
 import NavBar from '@/components/NavBar';
 import Line from '@/components/Line';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { axiosInstance, getJWTHeader } from '@/axiosinstance';
 
 function DocumentPage() {
   type Documents = {
     title: string;
     content: string;
     time: string;
-    writer:string;
+    writer: string;
   };
 
   const items: string[] = [
@@ -99,6 +100,17 @@ function DocumentPage() {
   const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky ${
     scroll ? '-top-24' : 'top-0'
   } z-20 bg-slate-100`;
+  useEffect(() => {
+    axiosInstance.post(
+      '/record',
+      {
+        userName: '박수현',
+        railNum: 4,
+        content: 'test',
+      },
+      getJWTHeader(),
+    );
+  }, []);
 
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
@@ -123,7 +135,7 @@ function DocumentPage() {
               Add
             </button>
           </div>
-          <Line width='3/4'/>
+          <Line width="3/4" />
         </div>
         <div className="w-full flex flex-col items-center mt-28">
           {documents.map((a, i) => (

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavBar from '@/components/NavBar';
 import Line from '@/components/Line';
+import { useUserInfo } from '@/login/hooks/useUserInfo';
 function MainPage() {
   type FeatureMenu = {
     name: string;
@@ -16,10 +17,10 @@ function MainPage() {
     { name: 'Status', kor: '물류 현황을 봅니다.', bg: '#6A92EB' },
     { name: 'Notification', kor: '각종 알림', bg: '#80A6FF' },
   ]);
-
+  const [scroll, setScroll] = useState<boolean>(false);
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
-      <NavBar />
+      <NavBar setScroll={setScroll} />
       <div className="w-2/3 h-72 flex justify-evenly items-center bg-blue-500 mt-36 rounded-xl">
         <div className="w-1/3 h-52 flex flex-col text-white">
           <div>

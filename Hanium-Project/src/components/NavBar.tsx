@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
-import LoginModal from './Modal/LoginModal';
-import SignUpModal from './Modal/SignUpModal';
+import LoginModal from '@/login/components/LoginModal';
+import SignUpModal from '@/login/components/SignUpModal';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Logout, isLogined } from '@/login/utils';
 interface NavBarProps {
   setScroll: (scroll: boolean) => void;
 }
@@ -15,7 +16,7 @@ function NavBar({ setScroll }: NavBarProps) {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
   const [position, setPosition] = useState<number>(window.pageYOffset);
-
+  const [isLogined, setIsLogined] = useState<boolean>(Boolean(localStorage.getItem('user')));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,11 +30,15 @@ function NavBar({ setScroll }: NavBarProps) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [position]);
+
+  useEffect(()=>{
+    setIsLogined(Boolean(localStorage.getItem('user')))
+  },[modal])
   const header = `w-full fixed bg-white h-24 flex justify-between items-center ease-in-out duration-150 transition-transform ${
     isScrolled ? '-translate-y-full' : 'translate-y-0'
   } z-50`;
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <div className={header}>
         <div className="w-1/6 h-full bg-indigo"></div>
         <div className="w-3/5 flex justify-evenly items-center h-full cursor-pointer text-xl font-medium ">
@@ -71,15 +76,29 @@ function NavBar({ setScroll }: NavBarProps) {
           </div>
         </div>
         <div className="w-1/6 h-full flex justify-evenly items-center">
-          <Button
-            width="80px"
-            height="10"
-            text="로그인"
-            bg="rgb(96 165 250)"
-            clickHandler={() => {
-              setIsModal(1);
-            }}
-          />
+          { isLogined ? (
+            <Button
+              width="80px"
+              height="10"
+              text="로그아웃"
+              bg="rgb(96 165 250)"
+              clickHandler={() => {
+                Logout();
+                setIsLogined(false);
+              }}
+            />
+          ) : (
+            <Button
+              width="80px"
+              height="10"
+              text="로그인"
+              bg="rgb(96 165 250)"
+              clickHandler={() => {
+                setIsModal(1);
+              }}
+            />
+          )}
+
           <FontAwesomeIcon
             onClick={() => {
               navigate('/notification');
