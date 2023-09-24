@@ -177,7 +177,7 @@ function SignUpModal({ setIsModal }: SignUpModalProps) {
                 handleButtonClicked();
               }}
             />
-            <div className="w-full text-s mt-2 mb-2 font-normal text-gray-400 text-center">
+            <div className="w-full text-s mt-2 mb-8 font-normal text-gray-400 text-center">
               You already have an account?{' '}
               <span
                 className="text-orange-600 cursor-pointer"
