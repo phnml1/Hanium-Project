@@ -1,7 +1,7 @@
 import NavBar from '@/components/NavBar';
 import '@/css/Monitoring.css';
 import Button from '@/components/Button';
-import AlertModal from '@/components/Modal/AlertModal';
+import AlertModal from '@/alert/component/AlertModal';
 import React,{ useState } from 'react';
 
 const MonitoringPage: React.FC = () => {
@@ -46,8 +46,8 @@ const MonitoringPage: React.FC = () => {
       </div>
       {isModal && (
         <AlertModal
-          width="3/4"
-          height="3/4"
+          width="1/2"
+          height="fit"
           setIsModal={setIsModal}
           setData={setData}
         />

@@ -18,19 +18,6 @@ const NotificationPage: React.FC = () => {
   const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
     const [scroll, setScroll] = useState<boolean>(false);
   const stickyStyle: string = `${scroll ? 'sticky top-0' : 'sticky top-24'}`;
-  useEffect(() => {
-    axiosInstance.post(
-      '/notice',
-      {
-        getUser: '박수현',
-        sendUser: '안소현',
-        noticeType: 'record',
-        content: '에러 발생',
-        noticeURL: 'http://~~',
-      },
-      getJWTHeader(),
-    );
-  });
   const notifydummy: Notification[] = [
     {
       kinds: '오류 알림',
