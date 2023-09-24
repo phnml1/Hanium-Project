@@ -1,5 +1,5 @@
 import DropDown from '@/components/DropDown';
-import DocumentAddModal from '@/components/Modal/DocumentAddModal';
+import DocumentAddModal from '@/document/component/DocumentAddModal';
 import NavBar from '@/components/NavBar';
 import Line from '@/components/Line';
 import { useEffect, useState } from 'react';
@@ -100,17 +100,23 @@ function DocumentPage() {
   const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky ${
     scroll ? '-top-24' : 'top-0'
   } z-20 bg-slate-100`;
-  useEffect(() => {
-    axiosInstance.post(
-      '/record',
-      {
-        userName: '박수현',
-        railNum: 4,
-        content: 'test',
-      },
-      getJWTHeader(),
-    );
-  }, []);
+  const handleClick = () => {
+    // axiosInstance.post(
+    //   '/record',
+    //   {
+    //     userName: '박수현',
+    //     railNum: 4,
+    //     content: 'test',
+    //   },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${localStorage.getItem('user')}`, // JWT 토큰을 "Authorization" 헤더에 추가
+    //       'Content-Type': 'application/json',
+    //     },
+    //   },
+    // );
+    
+  };
 
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
