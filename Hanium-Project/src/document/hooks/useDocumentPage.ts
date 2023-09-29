@@ -1,24 +1,22 @@
-import { useInfiniteQuery, useMutation } from 'react-query';
-import { axiosInstance, getJWTHeader } from '@/axiosinstance';
-import { DocumentData } from '../types';
+import { useInfiniteQuery } from 'react-query';
+import { axiosInstance } from '@/axiosinstance';
 // for when we need functions for useMutation
-async function Document(page: number): Promise<any> {
-  const response = await axiosInstance.get(`/record/ASC`, { params: { page } });
-  return response.data;
-}
+const Document = async ({ pageParam = 0 }) => {
+  console.log(pageParam);
+  return await axiosInstance.get(`/record/ASC`, { params: { page:pageParam } })
+};
 
 export function useDocumentPage() {
-  const { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(
-      'documents',
-      ({ pageParam = 1 }) => Document(pageParam),
-      {
-        getNextPageParam: (lastPage, allPages) => {
-          const nextPage = allPages.length + 1;
-          return nextPage;
-        },
+  const { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } =
+  useInfiniteQuery(
+    ["documents"],
+    ({ pageParam = 0 }) => Document(pageParam),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        return allPages.length < 4 && allPages.length + 1;
       },
-    );
+    }
+  );
 
-  return { data, isSuccess, hasNextPage, fetchNextPage, isFetchingNextPage };
+  return { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage };
 }

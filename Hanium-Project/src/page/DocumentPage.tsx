@@ -4,7 +4,9 @@ import NavBar from '@/components/NavBar';
 import Line from '@/components/Line';
 import { useEffect, useState } from 'react';
 import { axiosInstance, getJWTHeader } from '@/axiosinstance';
-
+import Documents from '@/document/component/Documents';
+import { useDocumentPage } from '@/document/hooks/useDocumentPage';
+import InfiniteScroll from "react-infinite-scroller";
 function DocumentPage() {
   type Documents = {
     title: string;
@@ -100,24 +102,8 @@ function DocumentPage() {
   const stickyStyle: string = `w-full flex flex-col items-center h-fit ease-in-out duration-150 items-center sticky ${
     scroll ? '-top-24' : 'top-0'
   } z-20 bg-slate-100`;
-  const handleClick = () => {
-    // axiosInstance.post(
-    //   '/record',
-    //   {
-    //     userName: '박수현',
-    //     railNum: 4,
-    //     content: 'test',
-    //   },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem('user')}`, // JWT 토큰을 "Authorization" 헤더에 추가
-    //       'Content-Type': 'application/json',
-    //     },
-    //   },
-    // );
-    
-  };
-
+  const { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } = useDocumentPage();
+  console.log(data);
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
       <NavBar setScroll={setScroll} />
@@ -143,22 +129,38 @@ function DocumentPage() {
           </div>
           <Line width="3/4" />
         </div>
-        <div className="w-full flex flex-col items-center mt-28">
-          {documents.map((a, i) => (
-            <div className="w-3/4 h-36 bg-white mt-4 rounded-lg relative">
-              <div className="w-1/3 h-1/2 absolute top-4 left-6">
-                <div className="text-lg font-semibold">{a.title}</div>
-                <div className="text-md">{a.content}</div>
-              </div>
-              <div className="w-1/3 font-normal text-gray-400 absolute bottom-4 left-6">
-                {a.time}
-              </div>
-              <div className="w-1/3 text-lg font-normal text-gray-400 absolute text-right top-4 right-6">
-                {a.writer}
-              </div>
-            </div>
-          ))}
-        </div>
+        {(isFetching)&& (<div className="loading">Loading...</div>)}
+    <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+      {data?.pages.map((pageData) =>
+        pageData.data.content.map((data) => (
+          // <Documents
+          //   key={data.recordId}
+          //   content={data.content}
+          //   time={data.createdDate}
+          //   writer={data.userName}
+          // />
+          <div className="w-3/4 h-36 bg-white mt-4 rounded-lg relative">
+      <div className="w-1/3 h-1/2 absolute top-4 left-6">
+        <div className="text-md">{data.content}</div>
+      </div>
+      <div className="w-1/3 font-normal text-gray-400 absolute bottom-4 left-6">
+        {data.createdDate}
+      </div>
+      <div className="w-1/3 text-lg font-normal text-gray-400 absolute text-right top-4 right-6">
+        {data.userName}
+      </div>
+    </div>
+        ))
+      )}
+    </InfiniteScroll>
+    {/* {documents.map((a, i) => (
+            <Documents
+            key={i}
+              content={a.content}
+              time={a.time}
+              writer={a.writer}
+            />
+          ))} */}
       </div>
 
       {modal && <DocumentAddModal setIsModal={setIsModal} />}
