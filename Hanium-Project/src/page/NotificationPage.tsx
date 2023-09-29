@@ -1,10 +1,8 @@
 import NavBar from '@/components/NavBar';
 import Button from '@/components/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DropDown from '@/components/DropDown';
 import Line from '@/components/Line';
-import { axiosInstance, getJWTHeader } from '@/axiosinstance';
-
 interface Notification {
   kinds: string;
   title: string;
@@ -12,8 +10,6 @@ interface Notification {
   content: string;
 }
 const NotificationPage: React.FC = () => {
-  const [currentLog, setCurrentLog] = useState<number>(200);
-  const [goalLog, setGoalLog] = useState<number>(1000);
   const [selected, setSelected] = useState<string>('전체 알림');
   const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
     const [scroll, setScroll] = useState<boolean>(false);
