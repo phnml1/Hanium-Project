@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import NavBar from '@/components/NavBar';
 import Line from '@/components/Line';
 import { useUserInfo } from '@/login/hooks/useUserInfo';
-import { axiosInstance } from '@/axiosinstance';
+import { axiosInstance, getJWTHeader } from '@/axiosinstance';
 function MainPage() {
   type FeatureMenu = {
     name: string;
@@ -19,7 +19,7 @@ function MainPage() {
     { name: 'Notification', kor: '각종 알림', bg: '#80A6FF' },
   ]);
   const [scroll, setScroll] = useState<boolean>(false);
-  useEffect(()=>{axiosInstance.get('/jwt/info',{headers:{Authorization: `Bearer ${localStorage.getItem('user')}`}})})
+  useEffect(()=>{axiosInstance.get('/jwt/info',{headers:getJWTHeader()})})
   return (
     <div className="w-full bg-slate-100 min-h-screen flex flex-col items-center">
       <NavBar setScroll={setScroll} />

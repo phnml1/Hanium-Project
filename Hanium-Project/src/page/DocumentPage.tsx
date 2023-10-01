@@ -22,80 +22,80 @@ function DocumentPage() {
     'D-26번 컨베이어',
     'D-27번 컨베이어',
   ];
-  const [documents, setDocuments] = useState<Documents[]>([
-    {
-      title: '9/3 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '6hours ago',
-      writer: 'admin',
-    },
-    {
-      title: '9/2 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/2 16:00',
-      writer: 'admin',
-    },
-    {
-      title: '9/1 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/1 13:00',
-      writer: 'admin',
-    },
-    {
-      title: '8/31 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '8/31 14:00',
-      writer: 'admin',
-    },
-    {
-      title: '9/3 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '6hours ago',
-      writer: 'admin',
-    },
-    {
-      title: '9/2 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/2 16:00',
-      writer: 'admin',
-    },
-    {
-      title: '9/1 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/1 13:00',
-      writer: 'admin',
-    },
-    {
-      title: '8/31 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '8/31 14:00',
-      writer: 'admin',
-    },
-    {
-      title: '9/3 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '6hours ago',
-      writer: 'admin',
-    },
-    {
-      title: '9/2 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/2 16:00',
-      writer: 'admin',
-    },
-    {
-      title: '9/1 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '9/1 13:00',
-      writer: 'admin',
-    },
-    {
-      title: '8/31 검사 결과 입니다',
-      content: '장비 이상없음',
-      time: '8/31 14:00',
-      writer: 'admin',
-    },
-  ]);
+  // const [documents, setDocuments] = useState<Documents[]>([
+  //   {
+  //     title: '9/3 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '6hours ago',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/2 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/2 16:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/1 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/1 13:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '8/31 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '8/31 14:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/3 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '6hours ago',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/2 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/2 16:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/1 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/1 13:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '8/31 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '8/31 14:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/3 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '6hours ago',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/2 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/2 16:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '9/1 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '9/1 13:00',
+  //     writer: 'admin',
+  //   },
+  //   {
+  //     title: '8/31 검사 결과 입니다',
+  //     content: '장비 이상없음',
+  //     time: '8/31 14:00',
+  //     writer: 'admin',
+  //   },
+  // ]);
   const [scroll, setScroll] = useState(false);
   const [selected, setSelected] = useState<string>('D-23번 컨베이어');
   const [modal, setIsModal] = useState(false);
