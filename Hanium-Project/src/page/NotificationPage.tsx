@@ -44,7 +44,7 @@ const NotificationPage: React.FC = () => {
         <div className="mt-16 mb-8 w-full flex flex-col items-center gap-6">
           <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
             {data?.pages.map((pageData) =>
-              pageData.content.map((data) => (
+              pageData.data.content.map((data) => (
                 // <Documents
                 //   key={data.recordId}
                 //   content={data.content}
