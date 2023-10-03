@@ -36,13 +36,13 @@ const NotificationPage: React.FC = () => {
               items={items}
             />
           </div>
-          <div className="w-full flex justify-end mt-4">
+          <div className="w-3/4 flex justify-end mt-4">
             <div className="w-fit text-red-400 cursor-pointer">delete</div>
           </div>
-          <Line width="full" mt="4" />
+          <Line width="3/4" mt="4" />
         </div>
-        <div className="mt-16 mb-8 w-full flex flex-col items-center gap-6">
-          <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+
+          <InfiniteScroll className="mt-16 mb-8 w-3/4 flex flex-col items-center gap-6" loadMore={fetchNextPage} hasMore={hasNextPage}>
             {data?.pages.map((pageData) =>
               pageData.data.content.map((data) => (
                 // <Documents
@@ -65,7 +65,6 @@ const NotificationPage: React.FC = () => {
               )),
             )}
           </InfiniteScroll>
-        </div>
       </div>
     </div>
   );

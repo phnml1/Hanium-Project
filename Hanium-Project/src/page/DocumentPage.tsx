@@ -130,7 +130,7 @@ function DocumentPage() {
           <Line width="3/4" />
         </div>
         {(isFetching)&& (<div className="loading">Loading...</div>)}
-    <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+    <InfiniteScroll className="w-3/4 flex flex-col items-center gap-6" loadMore={fetchNextPage} hasMore={hasNextPage}>
       {data?.pages.map((pageData) =>
         pageData.data.content.map((data) => (
           // <Documents
@@ -139,7 +139,7 @@ function DocumentPage() {
           //   time={data.createdDate}
           //   writer={data.userName}
           // />
-          <div className="w-3/4 h-36 bg-white mt-4 rounded-lg relative">
+          <div className="w-full h-36 bg-white mt-4 rounded-lg relative">
       <div className="w-1/3 h-1/2 absolute top-4 left-6">
         <div className="text-md">{data.content}</div>
       </div>
@@ -153,14 +153,6 @@ function DocumentPage() {
         ))
       )}
     </InfiniteScroll>
-    {/* {documents.map((a, i) => (
-            <Documents
-            key={i}
-              content={a.content}
-              time={a.time}
-              writer={a.writer}
-            />
-          ))} */}
       </div>
 
       {modal && <DocumentAddModal setIsModal={setIsModal} />}
