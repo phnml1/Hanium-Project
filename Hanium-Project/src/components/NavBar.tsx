@@ -84,7 +84,6 @@ function NavBar({ setScroll }: NavBarProps) {
               bg="rgb(96 165 250)"
               clickHandler={() => {
                 Logout();
-                setIsLogined(false);
               }}
             />
           ) : (
