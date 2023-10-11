@@ -5,6 +5,8 @@ import DropDown from '@/components/DropDown';
 import Line from '@/components/Line';
 import InfiniteScroll from 'react-infinite-scroller';
 import { useAlertPage } from '@/alert/hooks/useAlertPage';
+import { useAlertAllDelete } from '@/alert/hooks/useAlertAllDelete';
+import Alert from '@/alert/component/Alert';
 interface Notification {
   kinds: string;
   title: string;
@@ -16,10 +18,25 @@ const NotificationPage: React.FC = () => {
   const items: string[] = ['전체 알림', '진행 알림', '오류 알림'];
   const [scroll, setScroll] = useState<boolean>(false);
   const stickyStyle: string = `${scroll ? 'sticky top-0' : 'sticky top-24'}`;
+  const {mutate, isSuccess, isError} = useAlertAllDelete();
+  const handleButtonClicked = async () => {
+    const confirm: boolean = window.confirm('알림을 삭제하시겠습니까?');
+    if (confirm) {
+      mutate(); 
+    }
+  };
+  useEffect(()=>{
+    if(isSuccess) {
+      alert('알림이 전체 삭제 되었습니다');
+    }
+    if(isError) {
+      alert('에러가 발생했어요!');
+    }
+  },[isSuccess,isError]);
   const { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } =
     useAlertPage(selected);
-  console.log(data);
-  return (
+  
+    return (
     <div className="w-full bg-slate-100 h-fit flex flex-col items-center">
       <NavBar setScroll={setScroll} />
       <div className="w-full mt-24 bg-slate-100 h-fit flex flex-col items-center relative">
@@ -37,7 +54,7 @@ const NotificationPage: React.FC = () => {
             />
           </div>
           <div className="w-3/4 flex justify-end mt-4">
-            <div className="w-fit text-red-400 cursor-pointer">delete</div>
+            <div className="w-fit text-red-400 cursor-pointer" onClick = {()=>{handleButtonClicked()}}>delete</div>
           </div>
           <Line width="3/4" mt="4" />
         </div>
@@ -45,23 +62,14 @@ const NotificationPage: React.FC = () => {
           <InfiniteScroll className="mt-16 mb-8 w-3/4 flex flex-col items-center gap-6" loadMore={fetchNextPage} hasMore={hasNextPage}>
             {data?.pages.map((pageData) =>
               pageData.data.content.map((data) => (
-                // <Documents
-                //   key={data.recordId}
-                //   content={data.content}
-                //   time={data.createdDate}
-                //   writer={data.userName}
-                // />
-                <div className="w-3/4 h-36 bg-white mt-4 rounded-lg relative">
-                  <div className="w-1/3 h-1/2 absolute top-4 left-6">
-                    <div className="text-md">{data.content}</div>
-                  </div>
-                  <div className="w-1/3 font-normal text-gray-400 absolute bottom-4 left-6">
-                    {data.createdDate}
-                  </div>
-                  <div className="w-1/3 text-lg font-normal text-gray-400 absolute text-right top-4 right-6">
-                    {data.userName}
-                  </div>
-                </div>
+                <Alert
+                  key={data.noticeId}
+                  alertId={data.noticeId}
+                  content={data.content}
+                  createdDate={data.createdDate}
+                  userName={data.userName}
+                />
+                
               )),
             )}
           </InfiniteScroll>

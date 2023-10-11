@@ -7,8 +7,8 @@ import { useAddAlert } from '../hooks/useAddAlert';
 function AlertModal({ width, height, setIsModal }: AlertModalProps) {
   const [selected, setSelected] = useState('알림 종류를 선택하세요');
   const [data, setData] = useState<AlertData>({
-    getUser: '이주영',
-    sendUser: '',
+    getUser: '',
+    sendUser: '이주영',
     noticeType: '',
     content: '',
     noticeURL: 'http://~~',
@@ -65,7 +65,7 @@ function AlertModal({ width, height, setIsModal }: AlertModalProps) {
             className="w-3/4 h-8 mt-4 rounded-md shadow-md dropdown border-2 border-solid border-slate-100 text-center"
             placeholder="보내는 사람을 입력하세요"
             onChange={(e) => {
-              setData((data) => ({ ...data, sendUser: e.target.value }));
+              setData((data) => ({ ...data, getUser: e.target.value }));
             }}
           />
           {/* <div className="w-3/4 text-center mt-4 font-semibold">제목</div>
