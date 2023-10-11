@@ -35,12 +35,11 @@ function DocumentPage() {
   const handleButtonClicked = async () => {
     const confirm: boolean = window.confirm('기록을 삭제하시겠습니까?');
     if (confirm) {
-      await mutate();
-      if(isSuccess){
-        alert('기록이 추가되었습니다.');
-      } else if(isError){
+      mutate();
+      console.log(isSuccess);
+      if(isError){
         alert('서버 에러')
-      }
+      } 
     }
     
   };

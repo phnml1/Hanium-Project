@@ -12,9 +12,7 @@ const date = trimmedDate;
     const confirm: boolean = window.confirm('기록을 삭제하시겠습니까?');
     if (confirm) {
       await mutate(recordId);
-      if(isSuccess){
-        alert('기록이 추가되었습니다.');
-      } else if(isError){
+      if(isError){
         alert('서버 에러')
       }
     }
