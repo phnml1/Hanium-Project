@@ -16,15 +16,22 @@ function DocumentAddModal({ setIsModal }: DocumentAddModalProps) {
     const confirm: boolean = window.confirm('기록을 추가하시겠습니까?');
     if (confirm) {
       await mutate({ userName: '이주영', railNum: railNum, content: content });
-      if(isSuccess){
-        alert('기록이 추가되었습니다.');
-        setIsModal(false);
-      } else if(isError){
+     if(isError){
         alert('서버 에러')
+      } else if(isSuccess) {
+        alert('기록이 추가되었습니다.')
+        setIsModal(false);
       }
+
     }
     
   };
+  useEffect(()=>{
+    if(isSuccess){
+      alert('기록이 추가됨');
+      setIsModal(false);
+    }
+  },[isSuccess,setIsModal])
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-700 bg-opacity-50 z-50">
       <div

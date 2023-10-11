@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from 'react-query';
 import { axiosInstance, getJWTHeader } from '@/axiosinstance';
+
 // for when we need functions for useMutation
 const Alert = async (pageParam:number, selected:string) => {
   if (selected === '진행 알림') {
@@ -23,7 +24,7 @@ const Alert = async (pageParam:number, selected:string) => {
 export function useAlertPage(selected:string) {
   const { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } =
   useInfiniteQuery(
-    [`alert${selected}`],
+    ['alert',`${selected}`],
    ({ pageParam=0}) => Alert(pageParam,selected),
    {
      getNextPageParam: (lastPage) => !(lastPage.data.last) && lastPage.data.pageable.pageNumber+1,
