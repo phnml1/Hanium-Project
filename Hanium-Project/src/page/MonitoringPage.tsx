@@ -2,20 +2,14 @@ import NavBar from '@/components/NavBar';
 import '@/css/Monitoring.css';
 import Button from '@/components/Button';
 import AlertModal from '@/alert/component/AlertModal';
-import React,{ useState } from 'react';
-
+import { useState } from 'react';
+import { useMonitoringData } from '@/monitoring/hooks/useMonitotingData';
+import MonitoringData from '@/monitoring/components/MonitoringData';
 const MonitoringPage: React.FC = () => {
-  const currentDate: Date = new Date();
-  const currentTime = {
-    year: currentDate.getFullYear(),
-    month: currentDate.getMonth() + 1,
-    date: currentDate.getDate(),
-    hour: currentDate.getHours(),
-    min: currentDate.getMinutes(),
-  };
+  
   const [isModal, setIsModal] = useState<boolean>(false);
-  const [data, setData] = useState({});
-
+  const { isLoading, isFetching, data, isError, error } =  useMonitoringData();
+  console.log(data);
   return (
     <div className="w-full bg-slate-100 h-screen flex flex-col items-center">
       <NavBar />
@@ -23,15 +17,7 @@ const MonitoringPage: React.FC = () => {
       <div className="w-3/4 flex justify-between MonitoringContent mt-6">
         <div className="w-3/4 h-full bg-white rounded-l-xl"></div>
         <div className="w-1/4 h-full flex flex-col justify-between text-center font-semibold text-lg bg-gray-300 rounded-r-xl">
-          <div className="h-2/3 flex flex-col justify-evenly">
-            <div className="w-full text-center">
-              {`${currentTime.year}-${currentTime.month}-${currentTime.date} ${currentTime.hour}:${currentTime.min}`}
-            </div>
-            <div className="w-full text-center">
-              현재 물류 개수
-              <br />3
-            </div>
-          </div>
+        {data? (<MonitoringData timestamp = {data.timestamp} payload = {data.payload} />): <div className='h-2/3 flex justify-center items-center'>데이터를 가져오는 중입니다...</div>}
           <Button
             width="full"
             height="12"
@@ -49,7 +35,6 @@ const MonitoringPage: React.FC = () => {
           width="1/2"
           height="fit"
           setIsModal={setIsModal}
-          setData={setData}
         />
       )}
     </div>
