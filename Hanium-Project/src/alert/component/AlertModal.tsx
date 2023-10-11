@@ -17,7 +17,7 @@ function AlertModal({ width, height, setIsModal }: AlertModalProps) {
   const styleprops = `w-${width} h-${height}`;
   const { mutate, isSuccess, isError } = useAddAlert();
   useEffect(() => {
-    if (isSuccess) {
+        if (isSuccess) {
       alert('알림을 전송했습니다.');
       setIsModal(false);
     }

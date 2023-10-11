@@ -5,7 +5,7 @@ import LoginModal from '@/login/components/LoginModal';
 import SignUpModal from '@/login/components/SignUpModal';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Logout, isLogined } from '@/login/utils';
+import { Logout } from '@/login/utils';
 interface NavBarProps {
   setScroll: (scroll: boolean) => void;
 }
