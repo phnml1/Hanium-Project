@@ -5,13 +5,12 @@ import LoginModal from '@/login/components/LoginModal';
 import SignUpModal from '@/login/components/SignUpModal';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Logout, isLogined } from '@/login/utils';
+import { Logout } from '@/login/utils';
 interface NavBarProps {
   setScroll: (scroll: boolean) => void;
 }
 
 function NavBar({ setScroll }: NavBarProps) {
-  const [loginClicked, setLoginClicked] = useState<boolean>(false);
   const [modal, setIsModal] = useState<number>(0);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ function NavBar({ setScroll }: NavBarProps) {
 
   useEffect(()=>{
     setIsLogined(Boolean(localStorage.getItem('user')))
-  },[modal])
+  },[modal,isLogined])
   const header = `w-full fixed bg-white h-24 flex justify-between items-center ease-in-out duration-150 transition-transform ${
     isScrolled ? '-translate-y-full' : 'translate-y-0'
   } z-50`;

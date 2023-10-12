@@ -21,6 +21,7 @@ function LoginModal({ Modal, setIsModal }) {
         alert(issuccess);
       } else {
         localStorage.setItem('user', issuccess);
+        console.log(issuccess);
         setIsModal(0);
       }
     } catch (error) {
